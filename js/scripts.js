@@ -35,10 +35,7 @@ $(document).ready(function(){
         		lastImgSrc = $(this).find('img').attr('src')
         	});
         }
- 
         
-        $('.matched').show()
-
         if($('.unmatched').length == 0){
         	alert('You Won! (In ' + numMoves + ' moves!)');
         }
