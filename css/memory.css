@@ -37,35 +37,35 @@ img {
 }
 
 /*Each element needs top % and left % so it appears in the right slot. The second one is done for you.*/
-.mg_tile-1 {
+.mg_tile:nth-child(0){
   top: 0%;
   left: 0%;  
 }
-.mg_tile-2 {
+.mg_tile:nth-child(1) {
   top: 0%;
   left: 25%;
 }
-.mg_tile-3 {
+.mg_tile:nth-child(2) {
   top: 0%;
   left: 50%;  
 }
-.mg_tile-4 {
+.mg_tile:nth-child(3) {
   top: 0%;
   left: 75%;
 }
-.mg_tile-5 {
+.mg_tile:nth-child(4) {
   top: 50%;
   left: 0%;
 }
-.mg_tile-6 {
+.mg_tile:nth-child(5) {
   top: 50%;
   left: 25%;
 }
-.mg_tile-7 {
+.mg_tile:nth-child(6) {
   top: 50%;
   left: 50%;
 }
-.mg_tile-8 {
+.mg_tile:nth-child(7) {
   top: 50%;
   left: 75%;
 }
