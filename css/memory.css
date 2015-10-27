@@ -32,7 +32,7 @@ img {
 .mg_tile {
   /*Set the width of each element*/
   /*Set the height of each element*/
-  height: 100%;
+  max-height: 50%;
   width: 25%;
   padding: 5px;
   float: left;
