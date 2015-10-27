@@ -2,7 +2,10 @@ $(document).ready(function(){
 
     var howManyPerRow = 4;
     var howManyPerCol = 1;
-    var inputGameSize = prompt('Enter number of cards to play with.\nMust be greater than 3 and less than 29.');
+    var inputGameSize = prompt('Enter number of cards to play with.\nMust be even number greater than 3 and less than 29.');
+    if(inputGameSize%2){
+        inputGameSize++;
+    }
     if(inputGameSize < 29 && inputGameSize > 3 ){
         howManyPerCol = calcNumPerCol(inputGameSize,howManyPerRow);
     } else {
