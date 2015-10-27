@@ -1,7 +1,19 @@
 $(document).ready(function(){
 
-    var howManyPerRowCol = 4;
-	var gridSize = howManyPerRowCol * howManyPerRowCol;
+    var howManyPerRow = 4;
+    var howManyPerCol = 1;
+    var inputGameSize = prompt('Enter number of cards to play with.\nMust be greater than 3 and less than 29.');
+    if(inputGameSize < 29 && inputGameSize > 3 ){
+        howManyPerCol = calcNumPerCol(inputGameSize,howManyPerRow);
+    } else {
+        while(!(inputGameSize < 29 && inputGameSize > 3)){
+            inputGameSize = prompt('enter a valid game size >3 & <29');
+        }
+        howManyPerCol = calcNumPerCol(inputGameSize, howManyPerRow);
+    }
+
+  
+	var gridSize = inputGameSize;
 	var cards = [];
 
     var x = 0;
@@ -14,7 +26,7 @@ $(document).ready(function(){
         var theObject = {
             tile: i,
             cardValue: cardValue,
-            pic: 'img/default/monsters-0'+x+'.png',
+            pic: 'img/default/monsters-'+x+'.png',
             makeHTML: function(){
                 var html = '<div class ="mg_tile mg_tile-' + this.tile + '">';
                 html += '<div class="mg_tile-inner unmatched">';
@@ -44,8 +56,8 @@ $(document).ready(function(){
         $(html).appendTo($('.mg_contents'));
     }
 
-    $('.mg_tile').css('height', ((1/howManyPerRowCol)*100)+'%')
-    $('.mg_tile').css('width', ((1/howManyPerRowCol)*100)+'%')
+    $('.mg_tile').css('height', ((1/howManyPerCol)*100)+'%')
+    $('.mg_tile').css('width', ((1/howManyPerRow)*100)+'%')
 
 
 	var numClicks = 0;
@@ -75,13 +87,22 @@ $(document).ready(function(){
             if(cardVals[0] == cardVals[1]){
                 $('.mg_tile-inner.flipped.unmatched').addClass('match')
                 $('.mg_tile-inner.flipped').removeClass('unmatched')
+                numClicks+=2;
             }
-            numClicks+=2;
             if($('.unmatched').length == 0){
-                alert('You Won! (In ' + numClicks + ' clicks!)');
+                alert('You Won! (In ' + numClicks + ' clicks!)\nMost required should be '+Math.floor(gridSize*5/3)+'.');
             }
         }
         
         
     });
 });
+
+function calcNumPerCol(gameSize,howManyPerRow){
+    var howManyPerCol = 0;
+    if(gameSize%howManyPerRow){
+        howManyPerCol+=1;
+    }
+    howManyPerCol += Math.floor(gameSize / howManyPerRow);
+    return howManyPerCol;
+}
