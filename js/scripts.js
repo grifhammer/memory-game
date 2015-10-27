@@ -1,8 +1,38 @@
 $(document).ready(function(){
 
+    var howManyPerRowCol = 4;
+	var gridSize = howManyPerRowCol * howManyPerRowCol;
+	var cards = [];
+
+    var x = 0;
+	for(i = 1; i <= gridSize; i++){
+		if((i%2)){
+            cardValue = x;
+            x++;
+        }
+
+        var theObject = {
+            tile: i,
+            cardValue: cardValue,
+            pic: 'img/default/monsters-0'+x+'.png'
+        };
+
+        cards.push(theObject);
+	}
+
 	for(var i =0; i< 25; i++){
-		var rand = Math.floor(Math.random() * 8 + 1);
-		$('.mg_tile-' + rand ).appendTo($('.mg_contents'))
+		var rand = Math.floor(Math.random() * gridSize);
+		var rand2 = Math.floor(Math.random() * gridSize);
+		var temp = gridArray[rand];
+		gridArray[rand] = gridArray[rand2];
+		gridArray[rand2] = temp;
+	}
+
+	console.log(gridArray);
+
+	for(i = 1; i<=gridSize; i++){
+		var html = '<div class="mg_tile mg_tile-'+i+'"><div class="mg_tile-inner"><'
+		$(html).appendTo('.mg_contents')
 	}
 
 	var numClicks = 0;
