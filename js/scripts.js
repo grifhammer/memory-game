@@ -15,23 +15,32 @@ $(document).ready(function(){
             tile: i,
             cardValue: cardValue,
             pic: 'img/default/monsters-0'+x+'.png'
+            makeHTML: function(){
+                var html = '<div class ="mg_tile mg_tile-' + tile + '">';
+                html += '<div class="mg_tile-inner">';
+                html += '<div class="mg_tile-outside"></div>';
+                html += '<div class="mg_tile-inside unmatched" card="'+cardValue+'" id="mg-tile-'+tile+'">';
+                html += '<img src="' + pic +'"></div>';
+                html += '</div></div>';
+                return html;
+            }
         };
 
         cards.push(theObject);
 	}
 
-	for(var i =0; i< 25; i++){
+	for(var i =0; i < gridSize*4; i++){
 		var rand = Math.floor(Math.random() * gridSize);
 		var rand2 = Math.floor(Math.random() * gridSize);
-		var temp = gridArray[rand];
-		gridArray[rand] = gridArray[rand2];
-		gridArray[rand2] = temp;
+		var temp = cards[rand];
+		cards[rand] = cards[rand2];
+		cards[rand2] = temp;
 	}
 
-	console.log(gridArray);
+	console.log(cards);
 
 	for(i = 1; i<=gridSize; i++){
-		var html = '<div class="mg_tile mg_tile-'+i+'"><div class="mg_tile-inner"><'
+		var html = '<div class="mg_tile mg_tile-'+ cards[i].tile +'"><div class="mg_tile-inner"><div class="mg_tile-outside"></div><div class="mg_tile-inside unmatched" card="'+cards[i].tile+'" id="mg-tile-'+cards[i].tile+'"><img src="'+cards[i].pic+'"></div></div></div>'
 		$(html).appendTo('.mg_contents')
 	}
 
