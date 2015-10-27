@@ -14,13 +14,13 @@ $(document).ready(function(){
         var theObject = {
             tile: i,
             cardValue: cardValue,
-            pic: 'img/default/monsters-0'+x+'.png'
+            pic: 'img/default/monsters-0'+x+'.png',
             makeHTML: function(){
-                var html = '<div class ="mg_tile mg_tile-' + tile + '">';
+                var html = '<div class ="mg_tile mg_tile-' + this.tile + '">';
                 html += '<div class="mg_tile-inner">';
                 html += '<div class="mg_tile-outside"></div>';
-                html += '<div class="mg_tile-inside unmatched" card="'+cardValue+'" id="mg-tile-'+tile+'">';
-                html += '<img src="' + pic +'"></div>';
+                html += '<div class="mg_tile-inside unmatched" card="'+this.cardValue+'" id="mg-tile-'+this.tile+'">';
+                html += '<img src="' + this.pic +'"></div>';
                 html += '</div></div>';
                 return html;
             }
@@ -39,10 +39,14 @@ $(document).ready(function(){
 
 	console.log(cards);
 
-	for(i = 1; i<=gridSize; i++){
-		var html = '<div class="mg_tile mg_tile-'+ cards[i].tile +'"><div class="mg_tile-inner"><div class="mg_tile-outside"></div><div class="mg_tile-inside unmatched" card="'+cards[i].tile+'" id="mg-tile-'+cards[i].tile+'"><img src="'+cards[i].pic+'"></div></div></div>'
-		$(html).appendTo('.mg_contents')
-	}
+	for(i = 0; i<gridSize; i++){
+		var html = cards[i].makeHTML()
+        $(html).appendTo($('.mg_contents'));
+    }
+
+    $('mg_tile').css('height', ((1/howManyPerRowCol)*100)+'%')
+    $('mg_tile').css('width', ((1/howManyPerRowCol)*100)+'%')
+
 
 	var numClicks = 0;
 
